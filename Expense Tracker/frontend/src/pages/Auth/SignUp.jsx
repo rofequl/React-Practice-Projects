@@ -1,8 +1,9 @@
 import AuthLayout from "../../components/layouts/AuthLayout.jsx";
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Input from "../../components/Inputs/Input.jsx";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector.jsx";
+import {validateEmail} from "../../utils/helper.js";
 
 const SignUp = () => {
     const [profilePic, setProfilePic] = useState(null);
@@ -15,8 +16,29 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     // Handle SignUp form Submit
-    const handleSignUp = () => {
+    const handleSignUp = (e) => {
+        e.preventDefault();
 
+        let profileImageUrl = "";
+
+        if (!fullName) {
+            setError("Please enter your full name");
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            setError("Please enter a valid email address");
+            return;
+        }
+
+        if (!password) {
+            setError("Please enter your password");
+            return;
+        }
+
+        setError("");
+
+        //SignUp API Call
     }
 
     return (
@@ -28,7 +50,7 @@ const SignUp = () => {
                 </p>
 
                 <form onSubmit={handleSignUp}>
-                    <ProfilePhotoSelector />
+                    <ProfilePhotoSelector/>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <Input value={fullName} label="Full Name" placeholder="John"
                                type={"text"} onChange={(target) => setFullName(target.value)}/>
@@ -38,8 +60,17 @@ const SignUp = () => {
                             <Input value={password} onChange={({target}) => setPassword(target.value)}
                                    label="Password" placeholder="Min 8 Charecters" type="password"/>
                         </div>
-
                     </div>
+                    {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+                    <button type="submit" className="btn-primary">
+                        SIGN UP
+                    </button>
+                    <p>
+                        Already have an account?{" "}
+                        <Link className="font-medium text-primary underline" to="/login">
+                            Login
+                        </Link>
+                    </p>
                 </form>
             </div>
         </AuthLayout>

@@ -1,4 +1,4 @@
-import card2 from "../../assets/images/card2.jpeg";
+import card2 from "../../assets/images/card2.png";
 import {LuTrendingUpDown} from "react-icons/lu";
 
 const AuthLayout = ({children}) => {
@@ -14,12 +14,10 @@ const AuthLayout = ({children}) => {
                 <div className="w-48 h-48 rounded-[40px] bg-violet-500 absolute -bottom-7 -left-5"/>
 
                 <div className="grid grid-cols-1 z-20">
-                    <StatusInfoCard icon={<LuTrendingUpDown/>}
-                    label="Track Your Income & Expenses"
-                    value="430,000" color="bg-primary"/>
+                    <StatusInfoCard icon={<LuTrendingUpDown/>} label="Track Your Income & Expenses" value="430,000" color="bg-primary"/>
                 </div>
 
-                <img src={card2} className="w-64 lg:w-[90%] absolute bottom-10 shadow-lg shadow-blue-400/15"/>
+                <img src={card2} className="w-74 lg:w-[90%] absolute bottom-10 shadow-lg shadow-blue-400/15" alt=""/>
             </div>
         </div>
     );

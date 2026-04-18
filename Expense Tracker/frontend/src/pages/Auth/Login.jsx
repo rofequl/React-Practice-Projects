@@ -43,11 +43,9 @@ const Login = () => {
                            label="Password" placeholder="Min 8 Charecters" type="password"/>
 
                     {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-
                     <button type="submit" className="btn-primary">
                         LOGIN
                     </button>
-
                     <p>
                         Don`t have an account?{" "}
                         <Link className="font-medium text-primary underline" to="/signUp">
