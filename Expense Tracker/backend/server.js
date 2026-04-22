@@ -3,11 +3,12 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoute = require("./routes/authRoutes");
+const path = require("path");
 
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({extended: true}))
 
 // Middleware to handle CORS
 app.use(
@@ -21,6 +22,9 @@ app.use(
 connectDB().then();
 
 app.use("/api/v1/auth", authRoute)
+
+// Serve uploads folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
